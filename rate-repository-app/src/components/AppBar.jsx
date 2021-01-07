@@ -13,7 +13,8 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.barBackground,
+    justifyContent: 'space-between',
     // ...
   },
   // ...
@@ -22,17 +23,21 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <ScrollView horizontal style={{ flexDirection: 'row' }}>
-        <Link to="/" component={TouchableWithoutFeedback}>
-          <Text fontWeight="bold" fontSize="subheading" color="heading">
-            Repositories
-          </Text>
-        </Link>
-        <Link to="signin" component={TouchableWithoutFeedback}>
-          <Text fontWeight="bold" fontSize="subheading" color="heading">
-            Sign in
-          </Text>
-        </Link>
+      <ScrollView horizontal>
+        <View>
+          <Link to="/" component={TouchableWithoutFeedback}>
+            <Text fontWeight="bold" fontSize="subheading" color="heading">
+              Repositories
+            </Text>
+          </Link>
+        </View>
+        <View>
+          <Link to="/signin" component={TouchableWithoutFeedback}>
+            <Text fontWeight="bold" fontSize="subheading" color="heading">
+              Sign in
+            </Text>
+          </Link>
+        </View>
       </ScrollView>
     </View>
   );
