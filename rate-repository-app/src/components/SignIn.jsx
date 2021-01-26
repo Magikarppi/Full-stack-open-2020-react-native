@@ -4,6 +4,8 @@ import { Formik } from 'formik';
 
 import SignInForm from './SignInForm';
 import theme from '../theme';
+import useSignIn from './hooks/useSignIn';
+import { useHistory } from 'react-router-native';
 
 const styles = StyleSheet.create({
   form: {
@@ -41,9 +43,19 @@ const SignIn = () => {
     username: '',
     password: '',
   };
+  const [signIn] = useSignIn();
+  const history = useHistory();
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+    console.log('username', username);
+
+    try {
+      await signIn({ username, password });
+      history.push('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const validate = (values) => {
